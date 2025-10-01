@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block content %}
+{% for u in units %}
+  <div class="card">
+    <h3><a href="{{ url_for('unit_view', unit=u) }}">{{ u }}</a></h3>
+    <a href="{{ url_for('download', unit=u) }}">Download CSV</a>
+  </div>
+{% else %}
+  <p>No units yet. Upload a file to create one.</p>
+{% endfor %}
+{% endblock %}

@@ -1,0 +1,167 @@
+[
+  {
+    "question": "กำหนดให้ limx→a f(x) = L และ limx→a g(x) = M จงเลือกข้อที่ถูกต้องสำหรับ limx→a (f(x) + g(x))",
+    "options": [
+      "L - M",
+      "L + M",
+      "L * M",
+      "L / M"
+    ],
+    "correct_answer": "L + M",
+    "explanation": "ตามทฤษฎีบท 1.10 ข้อ 1 ระบุว่า limx→a (f(x) + g(x)) = limx→a f(x) + limx→a g(x) = L + M"
+  },
+  {
+    "question": "จงหาอนุพันธ์ของค่าคงที่ c เทียบกับ x (d/dx c)",
+    "options": [
+      "1",
+      "c",
+      "0",
+      "x"
+    ],
+    "correct_answer": "0",
+    "explanation": "ตามทฤษฎีบท 2.8 ข้อ 1 อนุพันธ์ของค่าคงที่ c เทียบกับ x คือ 0"
+  },
+  {
+    "question": "จงหาอนุพันธ์ของ x^n เทียบกับ x (d/dx x^n) เมื่อ n เป็นจำนวนจริง",
+    "options": [
+      "n x^(n+1)",
+      "x^(n-1)",
+      "n x^(n-1)",
+      "n x^n"
+    ],
+    "correct_answer": "n x^(n-1)",
+    "explanation": "ตามทฤษฎีบท 2.8 ข้อ 3 อนุพันธ์ของ x^n เทียบกับ x คือ n x^(n-1)"
+  },
+  {
+    "question": "กำหนดให้ u = f(x) จงหาอนุพันธ์ของ u^n เทียบกับ x (d/dx u^n) เมื่อ n เป็นจำนวนจริง",
+    "options": [
+      "n u^n (du/dx)",
+      "u^(n-1) (du/dx)",
+      "n u^(n-1) (du/dx)",
+      "n u^(n+1) (du/dx)"
+    ],
+    "correct_answer": "n u^(n-1) (du/dx)",
+    "explanation": "ตามทฤษฎีบท 2.21 อนุพันธ์ของ u^n เทียบกับ x คือ n u^(n-1) (du/dx)"
+  },
+  {
+    "question": "กำหนดให้ u = f(x) จงหาอนุพันธ์ของ a^u เทียบกับ x (d/dx a^u) เมื่อ a > 0",
+    "options": [
+      "a^u (du/dx)",
+      "a^u ln a",
+      "a^u ln a (du/dx)",
+      "u a^(u-1) (du/dx)"
+    ],
+    "correct_answer": "a^u ln a (du/dx)",
+    "explanation": "ตามทฤษฎีบท 2.25 อนุพันธ์ของ a^u เทียบกับ x คือ a^u ln a (du/dx)"
+  },
+  {
+    "question": "กำหนดให้ u = f(x) จงหาอนุพันธ์ของ ln u เทียบกับ x (d/dx ln u)",
+    "options": [
+      "1/u",
+      "u (du/dx)",
+      "1/u (du/dx)",
+      "ln u (du/dx)"
+    ],
+    "correct_answer": "1/u (du/dx)",
+    "explanation": "ตามทฤษฎีบท 2.28 อนุพันธ์ของ ln u เทียบกับ x คือ (1/u) (du/dx)"
+  },
+  {
+    "question": "กำหนดให้ u = f(x) จงหาอนุพันธ์ของ sin u เทียบกับ x (d/dx sin u)",
+    "options": [
+      "cos u",
+      "-cos u (du/dx)",
+      "cos u (du/dx)",
+      "-sin u (du/dx)"
+    ],
+    "correct_answer": "cos u (du/dx)",
+    "explanation": "ตามทฤษฎีบท 2.31 อนุพันธ์ของ sin u เทียบกับ x คือ cos u (du/dx)"
+  },
+  {
+    "question": "กำหนดให้ u = f(x) จงหาอนุพันธ์ของ cos u เทียบกับ x (d/dx cos u)",
+    "options": [
+      "sin u (du/dx)",
+      "-sin u (du/dx)",
+      "cos u (du/dx)",
+      "-cos u (du/dx)"
+    ],
+    "correct_answer": "-sin u (du/dx)",
+    "explanation": "ตามทฤษฎีบท 2.31 อนุพันธ์ของ cos u เทียบกับ x คือ -sin u (du/dx)"
+  },
+  {
+    "question": "กำหนดให้ u = f(x) จงหาอนุพันธ์ของ tan u เทียบกับ x (d/dx tan u)",
+    "options": [
+      "sec u tan u (du/dx)",
+      "sec^2 u",
+      "sec^2 u (du/dx)",
+      "-csc^2 u (du/dx)"
+    ],
+    "correct_answer": "sec^2 u (du/dx)",
+    "explanation": "ตามทฤษฎีบท 2.34 อนุพันธ์ของ tan u เทียบกับ x คือ sec^2 u (du/dx)"
+  },
+  {
+    "question": "กำหนดให้ u = f(x) จงหาอนุพันธ์ของ arcsin u เทียบกับ x (d/dx arcsin u)",
+    "options": [
+      "(1 / (1 + u^2)) (du/dx)",
+      "(-1 / sqrt(1 - u^2)) (du/dx)",
+      "(1 / sqrt(1 - u^2)) (du/dx)",
+      "(-1 / (1 + u^2)) (du/dx)"
+    ],
+    "correct_answer": "(1 / sqrt(1 - u^2)) (du/dx)",
+    "explanation": "ตามทฤษฎีบท 2.34 อนุพันธ์ของ arcsin u เทียบกับ x คือ (1 / sqrt(1 - u^2)) (du/dx)"
+  },
+  {
+    "question": "จงหาค่า limx→∞ (c / x^k) เมื่อ c เป็นค่าคงที่และ k เป็นจำนวนจริงบวก",
+    "options": [
+      "1",
+      "c",
+      "∞",
+      "0"
+    ],
+    "correct_answer": "0",
+    "explanation": "ตามทฤษฎีบท 1.24 ข้อ 1 กำหนดให้ k เป็นจำนวนจริงบวกและ c เป็นจำนวนจริงค่าคงตัว จะได้ว่า limx→∞ (c / x^k) = 0"
+  },
+  {
+    "question": "ฟังก์ชัน y = f(x) จะถูกกล่าวว่าเป็นฟังก์ชันต่อเนื่องที่จุด x = a ได้เมื่อใด",
+    "options": [
+      "f(a) หาค่าได้เท่านั้น",
+      "limx→a f(x) หาค่าได้เท่านั้น",
+      "limx→a f(x) = f(a)",
+      "f(a) และ limx→a f(x) ไม่จำเป็นต้องเท่ากัน"
+    ],
+    "correct_answer": "limx→a f(x) = f(a)",
+    "explanation": "ตามนิยาม 1.37 ฟังก์ชัน y = f(x) ต่อเนื่องที่จุด x = a ถ้า limx→a f(x) = f(a) ซึ่งหมายความว่า f(a) ต้องหาค่าได้, limx→a f(x) ต้องหาค่าได้ และทั้งสองค่าต้องเท่ากัน"
+  },
+  {
+    "question": "ความสัมพันธ์ระหว่างการหาอนุพันธ์และความต่อเนื่องของฟังก์ชันเป็นอย่างไร",
+    "options": [
+      "ถ้าฟังก์ชัน f ต่อเนื่องที่ a แล้ว f จะหาอนุพันธ์ได้ที่ a",
+      "ถ้าฟังก์ชัน f หาอนุพันธ์ได้ที่ a แล้ว f จะไม่ต่อเนื่องที่ a",
+      "ถ้าฟังก์ชัน f หาอนุพันธ์ได้ที่ a แล้ว f จะต่อเนื่องที่ a",
+      "การหาอนุพันธ์และความต่อเนื่องไม่มีความสัมพันธ์กัน"
+    ],
+    "correct_answer": "ถ้าฟังก์ชัน f หาอนุพันธ์ได้ที่ a แล้ว f จะต่อเนื่องที่ a",
+    "explanation": "ตามทฤษฎีบท 2.12 ระบุว่า ถ้าฟังก์ชัน f หาอนุพันธ์ได้ที่ a แล้ว f จะต่อเนื่องที่ a. อย่างไรก็ตาม บทกลับไม่เป็นจริง คือ ฟังก์ชันต่อเนื่องไม่จำเป็นต้องหาอนุพันธ์ได้"
+  },
+  {
+    "question": "กำหนดสมการอิงตัวแปรเสริม x = f(t) กับ y = g(t) และ f'(t) ≠ 0 จงหาสูตรการหา dy/dx",
+    "options": [
+      "(dx/dt) / (dy/dt)",
+      "(dy/dt) + (dx/dt)",
+      "(dy/dt) / (dx/dt)",
+      "(dy/dx) * (dt/dx)"
+    ],
+    "correct_answer": "(dy/dt) / (dx/dt)",
+    "explanation": "ตามสูตรการหาอนุพันธ์ของสมการอิงตัวแปรเสริม dy/dx = (dy/dt) / (dx/dt)"
+  },
+  {
+    "question": "กำหนดให้ u และ v เป็นฟังก์ชันที่หาอนุพันธ์ได้ที่ x จงหาสูตรการหาอนุพันธ์ของ (u/v) เทียบกับ x (d/dx (u/v))",
+    "options": [
+      "(v du/dx + u dv/dx) / v^2",
+      "(u dv/dx - v du/dx) / v^2",
+      "(v du/dx - u dv/dx) / v^2",
+      "(u du/dx - v dv/dx) / v^2"
+    ],
+    "correct_answer": "(v du/dx - u dv/dx) / v^2",
+    "explanation": "ตามทฤษฎีบท 2.13 ข้อ 3 สูตรการหาอนุพันธ์ของ (u/v) เทียบกับ x คือ (v du/dx - u dv/dx) / v^2"
+  }
+]

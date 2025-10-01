@@ -1,0 +1,420 @@
+{% extends 'base.html' %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>Group 7</title>
+    <link rel="stylesheet" href="/static/css/index_style.css">
+    <link rel="stylesheet" href="/static/css/customswiper.css">
+    <!-- Swiper CSS - Local -->
+    <link rel="stylesheet" href="/static/css/swiper-bundle.min.css">
+    <!-- RemixIcon - Local -->
+</head>
+
+<body>
+    <!-- nav Start -->
+    <nav>
+        <div class="logo">
+            <a href="/"><img src="/static/imgs/Q_Light.PNG" style="max-width: 50px; max-height: 50px;"></a>
+        </div>
+        <ul class="menu">
+            <li><a href="/index">Home</a></li>
+            <li><a href="/contacts">Contact</a></li>
+        </ul>
+    </nav>
+    <!-- nav End -->
+
+    <!-- Banner Start -->
+    <section class="banner">
+        <div class="banner-info">
+            <p>Get Started with <span class="highlight">Qraft</span></p>
+            <button class="btn" id="openModal">Generate Quiz</button>
+        </div>
+    </section>
+    <style>
+        /* Modal Styles */
+        .modal {
+            display: none;
+            /* Hidden by default */
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            justify-content: center;
+            align-items: center;
+            padding: 1.5rem;
+        }
+
+        .modal[aria-hidden="false"] {
+            display: flex;
+        }
+
+        .modal-panel {
+            background: #fff;
+            color: #111;
+            padding: 20px;
+            width: 480px;
+            max-width: 100%;
+            border-radius: 12px;
+            text-align: left;
+            position: relative;
+            animation: fadeIn 0.18s ease;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+        }
+
+        .modal-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .modal-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin: 0;
+        }
+
+        .modal-close {
+            background: transparent;
+            border: none;
+            font-size: 1.25rem;
+            cursor: pointer;
+            line-height: 1;
+        }
+
+        .modal-body {
+            margin-top: 0.5rem;
+        }
+
+        .form-row {
+            display: flex;
+            flex-direction: column;
+            gap: .5rem;
+            margin-bottom: .75rem;
+        }
+
+        .form-row label {
+            font-size: 0.9rem;
+            color: #333;
+        }
+
+        .form-input,
+        .form-text {
+            padding: .6rem .75rem;
+            border-radius: .5rem;
+            border: 1px solid #ddd;
+            font-size: 0.95rem;
+            width: 100%;
+        }
+
+        .form-text {
+            min-height: 40px;
+        }
+
+        .file-row {
+            display: flex;
+            gap: .5rem;
+            align-items: center;
+        }
+
+        .file-select {
+            padding: .5rem .75rem;
+            border-radius: .5rem;
+            border: 1px dashed #cfcfcf;
+            background: #fafafa;
+            cursor: pointer;
+            flex: 0 0 auto;
+        }
+
+        .file-name {
+            font-size: 0.9rem;
+            color: #666;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .btn-primary {
+            display: inline-block;
+            background-color: #ff950a;
+            color: white;
+            padding: .6rem 1rem;
+            border-radius: .5rem;
+            border: none;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        @keyframes fadeIn {
+            from {
+                transform: translateY(-6px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @media (prefers-color-scheme: dark) {
+            .btn-primary {
+                background-color: #00c6b2;
+                color: white;
+            }
+        }
+    </style>
+
+    <!-- Modal -->
+    <div id="quizModal" class="modal" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="quizTitle">
+        <div class="modal-panel" role="document">
+            <div class="modal-header">
+                <h2 id="quizTitle" class="modal-title">Quiz Generator</h2>
+                <button class="modal-close" aria-label="Close dialog">✕</button>
+            </div>
+
+            <div class="modal-body">
+                <form id="quizForm" action="/upload" method="post" enctype="multipart/form-data">
+                    <div class="form-row">
+                        <label for="unitInput">Unit name</label>
+                        <input id="unitInput" class="form-input" type="text" name="unit" placeholder="e.g. Algebra"
+                            required autofocus>
+                    </div>
+
+                    <div class="form-row">
+                        <label for="descInput">Short description (optional)</label>
+                        <input id="descInput" class="form-text" type="text" name="description"
+                            placeholder="One-line description">
+                    </div>
+
+                    <div class="form-row">
+                        <label>PDF file</label>
+                        <div class="file-row">
+                            <label class="file-select" for="fileInput">Choose PDF</label>
+                            <input id="fileInput" type="file" name="file" accept="application/pdf" style="display:none;"
+                                required>
+                            <div class="file-name" id="fileName">No file chosen</div>
+                        </div>
+                    </div>
+
+                    <div style="display:flex; justify-content:space-between; align-items:center; gap:.5rem;">
+                        <button type="button" class="btn-primary" id="cancelModal">Cancel</button>
+                        <button type="submit" class="btn-primary">Upload & Generate</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- Banner End -->
+    <script>
+        // Modal controls: open, close, Esc to close, and file preview
+        (function () {
+            const modal = document.getElementById('quizModal');
+            const openBtn = document.getElementById('openModal');
+            const closeBtn = modal.querySelector('.modal-close');
+            const cancelBtn = document.getElementById('cancelModal');
+            const fileInput = document.getElementById('fileInput');
+            const fileName = document.getElementById('fileName');
+            const fileSelect = modal.querySelector('.file-select');
+            const form = document.getElementById('quizForm');
+
+            function setAria(open) {
+                modal.setAttribute('aria-hidden', open ? 'false' : 'true');
+            }
+
+            function openModal() {
+                setAria(true);
+                // focus first input
+                const first = modal.querySelector('input:not([type="file"])');
+                if (first) first.focus();
+                document.body.style.overflow = 'hidden';
+            }
+
+            function closeModal() {
+                setAria(false);
+                document.body.style.overflow = '';
+                openBtn.focus();
+            }
+
+            openBtn.addEventListener('click', (e) => { e.preventDefault(); openModal(); });
+            closeBtn.addEventListener('click', closeModal);
+            cancelBtn.addEventListener('click', (e) => { e.preventDefault(); closeModal(); });
+
+            // Click outside to close
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) closeModal();
+            });
+
+            // Esc to close
+            window.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && modal.getAttribute('aria-hidden') === 'false') {
+                    closeModal();
+                }
+            });
+
+            // File selection helpers
+            fileSelect.addEventListener('click', () => fileInput.click());
+            fileInput.addEventListener('change', () => {
+                const f = fileInput.files && fileInput.files[0];
+                if (!f) {
+                    fileName.textContent = 'No file chosen';
+                    return;
+                }
+                // basic client-side type check
+                if (f.type !== 'application/pdf') {
+                    fileName.textContent = 'Please select a PDF file';
+                    return;
+                }
+                fileName.textContent = f.name;
+            });
+
+            // Simple client-side pre-check before submitting
+            form.addEventListener('submit', (e) => {
+                const unit = form.elements['unit'].value.trim();
+                const file = fileInput.files && fileInput.files[0];
+                if (!unit) {
+                    e.preventDefault();
+                    alert('Please enter a unit name.');
+                    form.elements['unit'].focus();
+                    return;
+                }
+                if (!file) {
+                    e.preventDefault();
+                    alert('Please choose a PDF file to upload.');
+                    return;
+                }
+                // allow the form to submit; server will handle the rest
+            });
+        })();
+    </script>
+    <section class="swiper_container">
+        <div class="card__container swiper">
+            <div class="card__content">
+                <div class="swiper-wrapper">
+                    {% if data is mapping %}
+                    {% for _id, item in data.items() %}
+                    <article class="card__article swiper-slide">
+                        <div class="card__image">
+                            <img src="{{ item.CoverImage or '/static/imgs/avatar-1.png' }}" alt="image"
+                                class="card__img card__img--flexible">
+                        </div>
+
+                        <div class="card__data">
+                            <h3 class="card__name">{{ item.Name or 'Unknown' }}</h3>
+                            <p class="card__description">{{ item.Description or 'No description available.' }}</p>
+                            <a href="{{ item.url or '#' }}" class="card__button">Take Quiz</a>
+                        </div>
+                    </article>
+                    {% endfor %}
+                    {% else %}
+                    {% for item in data %}
+                    <article class="card__article swiper-slide">
+                        <div class="card__image">
+                            <img src="{{ item.CoverImage or '/static/imgs/avatar-1.png' }}" alt="image"
+                                class="card__img card__img--flexible">
+                        </div>
+
+                        <div class="card__data">
+                            <h3 class="card__name">{{ item.Name or 'Unknown' }}</h3>
+                            <p class="card__description">{{ item.Description or 'No description available.' }}</p>
+
+                            <a href="{{ item.url or '#' }}" class="card__button">Take Quiz</a>
+                        </div>
+                    </article>
+                    {% endfor %}
+                    {% endif %}
+                </div>
+            </div>
+
+            <!-- Navigation buttons -->
+            <div class="swiper-button-next">
+                <i class="ri-arrow-right-s-line"></i>
+            </div>
+
+            <div class="swiper-button-prev">
+                <i class="ri-arrow-left-s-line"></i>
+            </div>
+
+            <!-- Pagination -->
+            <div class="swiper-pagination"></div>
+        </div>
+    </section>
+
+    <!-- Swiper JS from CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+    <!-- Your custom JS -->
+    <!-- Your custom JS -->
+    <script>
+        /*=============== SWIPER JS ===============*/
+        // Count the number of slides
+        const slideCount = document.querySelectorAll('.swiper-slide').length;
+
+        // Configure swiper based on slide count
+        const swiperConfig = {
+            spaceBetween: 32,
+            grabCursor: true,
+            speed: 1500,
+            slidesPerView: 2,
+            centeredSlides: false,
+
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+                dynamicBullets: true,
+            },
+
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
+
+            breakpoints: {
+                0: {
+                    slidesPerView: 1,
+                    spaceBetween: 16
+                },
+                480: {
+                    slidesPerView: Math.min(2, slideCount), // Don't show more slides than available
+                    spaceBetween: 24
+                },
+                768: {
+                    slidesPerView: Math.min(2, slideCount),
+                    spaceBetween: 32
+                },
+                1024: {
+                    slidesPerView: Math.min(2, slideCount),
+                    spaceBetween: 32
+                }
+            },
+        };
+
+        // Only enable loop if we have more than 2 slides
+        if (slideCount > 3) {
+            swiperConfig.loop = true;
+        }
+
+        // Hide navigation arrows if we have 2 or fewer slides
+        if (slideCount <= 3) {
+            const nextBtn = document.querySelector('.swiper-button-next');
+            const prevBtn = document.querySelector('.swiper-button-prev');
+            if (nextBtn) nextBtn.style.display = 'none';
+            if (prevBtn) prevBtn.style.display = 'none';
+        }
+
+        // Initialize swiper with dynamic configuration
+        let swiperCards = new Swiper(".card__content", swiperConfig);
+    </script>
+
+</body>
+
+</html>
+{% endblock %}

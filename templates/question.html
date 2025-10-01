@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Quizz</h1>
+<p>{{ question }}</p>
+{for i in range(choices|length) %}
+  <form method="post" action="/answer">
+    <input type="hidden" name="question_id" value="{{ question_id }}">
+    <input type="hidden" name="selected_choice" value="{{ i }}">
+    <button type="submit">{{ choices[i] }}</button>
+  </form>
+{endfor}
+{% endblock %}

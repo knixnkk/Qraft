@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Qraft</title>
+    <link rel="icon" href="/static/imgs/Q_Dark.PNG" type="image/png">
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <main class="container">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+        <div class="flash-messages">
+            {% for category, msg in messages %}
+            <div class="flash {{ category }}">{{ msg }}</div>
+            {% endfor %}
+        </div>
+        {% endif %}
+        {% endwith %}
+        
+        {% block content %}{% endblock %}
+    </main>
+    
+    <script defer src="https://unpkg.com/alpinejs@3.12.0/dist/cdn.min.js"></script>
+    
+    <script>
+    function updateFavicon() {
+        const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const favicon = document.querySelector('link[rel="icon"]');
+        
+        if (favicon) {
+            favicon.href = isDarkMode
+                ? "/static/imgs/Q_Dark.PNG"
+                : "/static/imgs/Q_Light.PNG";
+        }
+    }
+    document.addEventListener('DOMContentLoaded', updateFavicon);
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', updateFavicon);
+    </script>
+</body>
+</html>

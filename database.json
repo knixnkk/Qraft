@@ -1,0 +1,23 @@
+{
+    "1": {
+        "Name": "Calculus1",
+        "PDF": "/home/knixnkk-main/Desktop/website-projects/flashcard/uploads/Calculus1-Cal1_บทที่ 1-2 (อ.ศราวุธ).pdf",
+        "Description": "บท 1-2",
+        "CoverImage": "static/cover/Calculus1.jpg",
+        "Question": "/home/knixnkk-main/Desktop/website-projects/flashcard/data/Calculus1.json"
+    },
+    "2": {
+        "Name": "Calculus อัตรา",
+        "PDF": "/home/knixnkk-main/Desktop/website-projects/flashcard/uploads/Calculus อัตรา-อัตราสัมพัทธ์168.pdf",
+        "Description": "อัตราสัมพัทธ์",
+        "CoverImage": "static/cover/Calculus อัตรา.jpg",
+        "Question": "/home/knixnkk-main/Desktop/website-projects/flashcard/data/Calculus อัตรา.json"
+    },
+    "3": {
+        "Name": "Physics-04",
+        "PDF": "/home/knixnkk-main/Desktop/website-projects/flashcard/uploads/Physics-04-Chapter 4.pdf",
+        "Description": "บทที่ 4",
+        "CoverImage": "static/cover/Physics-04.jpg",
+        "Question": "/home/knixnkk-main/Desktop/website-projects/flashcard/data/Physics-04.json"
+    }
+}

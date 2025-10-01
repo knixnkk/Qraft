@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="IntroDiv">
+  <img src="/static/imgs/Light.PNG" alt="" width="500" height="250">
+  <h1 class="app-title">Welcome to <span class="highlight">Our project</span></h1>
+  <p class="description"><span class="highlight">Qraft</span> is a simple, intuitive web application designed to empower
+    you to create and use custom quizzes for effective memorization and self-testing. It's your personal workshop for
+    solidifying knowledge, allowing you to "craft" questions and answers tailored precisely to what you're learning.</p>
+  <a class="cta-button" href="/index">Get Started</a>
+  <style>
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+    }
+
+    .cta-button {
+      text-decoration: none;
+    }
+
+    body {
+      background-image: url('/static/imgs/12.gif');
+      background-size: cover;
+    }
+
+    .IntroDiv {
+      background-color: transparent;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      body {
+        background-image: url('/static/imgs/11.gif');
+        background-size: cover;
+      }
+    }
+  </style>
+
+  <p style="color: darkgray;">Made By Soymilk Group 7</p>
+</div>
+{% endblock %}
